@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,"inicio sesion",Toast.LENGTH_SHORT).show();
                                 editor.putString("correo", Usuario);
                                 editor.commit();
+                                Intent i = new Intent(MainActivity.this, HomeView.class);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(MainActivity.this,"Error al iniciar sesion",Toast.LENGTH_SHORT).show();
                             }

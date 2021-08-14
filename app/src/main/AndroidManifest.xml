@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSalesInstantly">
+        <activity android:name=".HomeView"></activity>
         <activity android:name=".PaginaInicialView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,9 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistroActivityView" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
