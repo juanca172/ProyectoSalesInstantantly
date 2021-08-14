@@ -1,3 +1,27 @@
 <resources>
-    <string name="app_name">proyectoSalesInstantly</string>
+    <string name="app_name">Sales Instantly</string>
+    <string name="txvIntroduceElNombreyApellido">Introduce el Nombre y Apellido</string>
+    <string name="txvIntroduceElCorreo">Introduce el correo electronico</string>
+    <string name="txeIntroducirNombre">Introduce el nombre del usuario</string>
+    <string name="txvIntroduceLaContraseña">Introduce una contraseña</string>
+    <string name="txeIntroducirContraseña">Introduce la contraseña</string>
+    <string name="txvConfirmarContraseña">Confirmar contraseña</string>
+    <string name="txeConfirmaContraseña">Confirma la contraseña</string>
+    <string name="txvDireccion">Direccion</string>
+    <string name="txeColocarDireccion">introduce la dirección</string>
+    <string name="txvCiudad">Ciudad</string>
+    <string name="txeIntroduceLaCiudad">introduce la ciudad</string>
+    <string name="txvTelefono">Telefono</string>
+    <string name="txeIntroduceElTelefono">Introduce el numero telefonico</string>
+    <string name="txvFechaNacimiento">Fecha de nacimiento</string>
+    <string name="txeIntroduceFechaNacimiento">Introduce la fecha de nacimeinto</string>
+    <string name="btnRegister">Registrarse</string>
+    <string name="TxeUsuarioCorreoelectronico">usuario y/o correo electronico</string>
+    <string name="TxeContraseña">contraseña</string>
+    <string name="BtOlvideMiContraseña">OLVIDE MI CONTRASEÑA</string>
+    <string name="BtCrearCuenta">CREAR CUENTA</string>
+    <string name="BtIngresar">INGRESAR</string>
+    <string name="hola_mundo">hola mundo</string>
+    <string name="nombreProducto">Nombre del producto</string>
+    <string name="descripcionProducto">Descripcion del producto</string>
 </resources>
