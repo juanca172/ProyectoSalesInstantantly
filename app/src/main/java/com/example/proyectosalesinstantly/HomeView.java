@@ -77,4 +77,8 @@ public class HomeView extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void goToPerfil(View view){
+        Intent intent = new Intent(this, PerfilUsuarioView.class);
+        startActivity(intent);
+    }
 }
