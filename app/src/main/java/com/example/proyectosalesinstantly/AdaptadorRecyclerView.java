@@ -1,5 +1,7 @@
 package com.example.proyectosalesinstantly;
 
+import android.media.Image;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,15 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.ShowableListMenu;
+import androidx.core.net.UriCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecyclerView.RecyclerHolder> {
     private List<CardViewAtributos> items;
+    HomeView Home;
 
-    public AdaptadorRecyclerView(List<CardViewAtributos> items) {
+    public AdaptadorRecyclerView(List<CardViewAtributos> items, HomeView Home) {
         this.items = items;
+        this.Home = Home;
     }
 
     @NonNull
@@ -29,9 +37,10 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
     @Override
     public void onBindViewHolder(AdaptadorRecyclerView.RecyclerHolder holder, int position) {
         CardViewAtributos atributosDelCardView = items.get(position);
-        holder.imgItem.setImageResource(atributosDelCardView.getImagenDeTienda());
+
         holder.tvTitulo.setText(atributosDelCardView.getNombre());
         holder.tvDescripcion.setText(atributosDelCardView.getDescripcion());
+        Glide.with(Home).load(atributosDelCardView.getImagenDeTienda()).into(holder.imgItem);
     }
 
     @Override
@@ -44,6 +53,8 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
         private ImageView imgItem;
         private TextView tvTitulo;
         private TextView tvDescripcion;
+
+
         public RecyclerHolder(@NonNull View itemView) {
             super(itemView);
             imgItem = itemView.findViewById(R.id.imageViewTiendas);

@@ -1,14 +1,21 @@
 package com.example.proyectosalesinstantly;
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
+import android.widget.ImageView;
+
+import com.bumptech.glide.RequestBuilder;
+
 public class CardViewAtributos  {
     //nombre del producto
     public String nombre;
     //descripcion del producto
     public String descripcion;
     //como tenemos nuestras imagenes en la carpeta drawable por eso es entero
-    private int ImagenDeTienda;
+    private String ImagenDeTienda;
 
-    public CardViewAtributos(String nombre,String descripcion,int ImagenDeTienda) {
+    public CardViewAtributos(String nombre, String descripcion, String ImagenDeTienda) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.ImagenDeTienda = ImagenDeTienda;
@@ -30,11 +37,11 @@ public class CardViewAtributos  {
         this.descripcion = descripcion;
     }
 
-    public int getImagenDeTienda() {
+    public String getImagenDeTienda() {
         return ImagenDeTienda;
     }
 
-    public void setImagenDeTienda(int imageResource) {
+    public void setImagenDeTienda(String imageResource) {
         this.ImagenDeTienda = imageResource;
     }
 }

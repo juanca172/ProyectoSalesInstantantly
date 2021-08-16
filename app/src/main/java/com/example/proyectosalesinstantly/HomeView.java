@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,9 +13,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +33,17 @@ public class HomeView extends AppCompatActivity {
     private RecyclerView rvtiendas;
     private AdaptadorRecyclerView adapter;
     private List<CardViewAtributos> items;
+    FirebaseFirestore db;
     FirebaseDatabase database;
     FirebaseAuth auth;
     private DatabaseReference mDatabase;
+    public String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_view);
+        //fireStore
+        db = FirebaseFirestore.getInstance();
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference().child("users");
         //Relacion entre la vista y la parte logica
@@ -46,6 +56,7 @@ public class HomeView extends AppCompatActivity {
         //creacion de un adaptador para enviar datos al listView
         initViews();
         initValues();
+        ObtenerValores();
     }
     public void initViews() {
         rvtiendas = findViewById(R.id.rvLista);
@@ -55,17 +66,17 @@ public class HomeView extends AppCompatActivity {
         rvtiendas.setLayoutManager(manager);
 
         items = getItems();
-        adapter = new AdaptadorRecyclerView(items);
+        adapter = new AdaptadorRecyclerView(items,this);
         rvtiendas.setAdapter(adapter);
     }
 
     public List<CardViewAtributos> getItems() {
         List<CardViewAtributos> itemsList = new ArrayList<>();
-        itemsList.add(new CardViewAtributos("Tomate", "salsa de tomate", R.drawable.tomate));
-        itemsList.add(new CardViewAtributos("axe", "desodorante",R.drawable.axe));
+        itemsList.add(new CardViewAtributos("Tomate", "salsa de tomate",url));
+        /*itemsList.add(new CardViewAtributos("axe", "desodorante",R.drawable.axe));
         itemsList.add(new CardViewAtributos("ponds", "desodorante", R.drawable.ponds));
         itemsList.add(new CardViewAtributos("axe", "desodorante",R.drawable.axe));
-        itemsList.add(new CardViewAtributos("ego", "salsa de tomate", R.drawable.ego));
+        itemsList.add(new CardViewAtributos("ego", "salsa de tomate", R.drawable.ego));*/
 
 
         return itemsList;
@@ -80,5 +91,19 @@ public class HomeView extends AppCompatActivity {
     public void goToPerfil(View view){
         Intent intent = new Intent(this, PerfilUsuarioView.class);
         startActivity(intent);
+    }
+//metodo para obtener valores del fireStore
+    public void ObtenerValores() {
+        db.collection("Productos").document("1").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    url = documentSnapshot.getString("Imagen");
+                    Toast.makeText(HomeView.this, "EXITOSO", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(HomeView.this, "No se encontraron los datos", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
