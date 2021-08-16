@@ -29,23 +29,24 @@
             android:orientation="vertical"
             android:layout_margin="10dp"
             >
+
             <TextView
                 android:id="@+id/tvNombreDelProducto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="@string/nombreProducto"
-                android:textSize="24sp"
-                android:layout_marginBottom="20dp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvDescripcionProducto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/descripcionProducto"
-                android:textSize="24sp"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="16sp" />
         </LinearLayout>
 
 

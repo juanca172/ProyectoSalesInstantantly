@@ -37,7 +37,6 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
     @Override
     public void onBindViewHolder(AdaptadorRecyclerView.RecyclerHolder holder, int position) {
         CardViewAtributos atributosDelCardView = items.get(position);
-
         holder.tvTitulo.setText(atributosDelCardView.getNombre());
         holder.tvDescripcion.setText(atributosDelCardView.getDescripcion());
         Glide.with(Home).load(atributosDelCardView.getImagenDeTienda()).into(holder.imgItem);

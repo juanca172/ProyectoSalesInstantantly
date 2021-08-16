@@ -1,5 +1,6 @@
 package com.example.proyectosalesinstantly;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +16,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +37,16 @@ public class HomeView extends AppCompatActivity {
     //encapsulamiento del listView
     private RecyclerView rvtiendas;
     private AdaptadorRecyclerView adapter;
-    private List<CardViewAtributos> items;
+    //private List<CardViewAtributos> items;
     FirebaseFirestore db;
     FirebaseDatabase database;
     FirebaseAuth auth;
     private DatabaseReference mDatabase;
     public String url;
+
+
+    List<CardViewAtributos> items = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +64,6 @@ public class HomeView extends AppCompatActivity {
         spinner.setAdapter(arrayAdaptador);
         //creacion de un adaptador para enviar datos al listView
         initViews();
-        initValues();
         ObtenerValores();
     }
     public void initViews() {
@@ -64,22 +72,9 @@ public class HomeView extends AppCompatActivity {
     public void initValues() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rvtiendas.setLayoutManager(manager);
-
-        items = getItems();
+        //items = getItems();
         adapter = new AdaptadorRecyclerView(items,this);
         rvtiendas.setAdapter(adapter);
-    }
-
-    public List<CardViewAtributos> getItems() {
-        List<CardViewAtributos> itemsList = new ArrayList<>();
-        itemsList.add(new CardViewAtributos("Tomate", "salsa de tomate",url));
-        /*itemsList.add(new CardViewAtributos("axe", "desodorante",R.drawable.axe));
-        itemsList.add(new CardViewAtributos("ponds", "desodorante", R.drawable.ponds));
-        itemsList.add(new CardViewAtributos("axe", "desodorante",R.drawable.axe));
-        itemsList.add(new CardViewAtributos("ego", "salsa de tomate", R.drawable.ego));*/
-
-
-        return itemsList;
     }
     public void goToVistaIniciarSesionDesdeLasTiendas(View view) {
         Toast.makeText(this, "Sesion cerrada", Toast.LENGTH_LONG).show();
@@ -92,15 +87,28 @@ public class HomeView extends AppCompatActivity {
         Intent intent = new Intent(this, PerfilUsuarioView.class);
         startActivity(intent);
     }
-//metodo para obtener valores del fireStore
+    //metodo para obtener valores del fireStore
     public void ObtenerValores() {
-        db.collection("Productos").document("1").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        db.collection("Productos").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    url = documentSnapshot.getString("Imagen");
-                    Toast.makeText(HomeView.this, "EXITOSO", Toast.LENGTH_SHORT).show();
-                } else {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    Integer size  = task.getResult().size();
+                    int count = 1;
+                    for(QueryDocumentSnapshot document: task.getResult()){
+                        String uri = document.getString("Imagen");
+                        String nombre = document.getString("Nombre");
+                        String descripcion = document.getString("Descripcion");
+                        items.add(new CardViewAtributos(nombre, descripcion,uri));
+                        if(count <size){
+                            count++;
+                        }
+                        else{
+                            initValues();
+                        }
+                    }
+                }
+                else {
                     Toast.makeText(HomeView.this, "No se encontraron los datos", Toast.LENGTH_SHORT).show();
                 }
             }
