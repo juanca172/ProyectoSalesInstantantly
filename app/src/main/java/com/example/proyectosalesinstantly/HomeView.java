@@ -1,25 +1,40 @@
 package com.example.proyectosalesinstantly;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeView extends AppCompatActivity {
+
+    private static final String TAG = "DocSnippets";
     //encapsulamiento del spinner
     private Spinner spinner;
     private AutoCompleteTextView aCText;
@@ -29,13 +44,23 @@ public class HomeView extends AppCompatActivity {
     private List<CardViewAtributos> items;
     FirebaseDatabase database;
     FirebaseAuth auth;
+
+    int count;
+
+
+
+    private StorageReference mStorageRef;
     private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_view);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference().child("users");
+
+
         //Relacion entre la vista y la parte logica
         spinner = (Spinner)findViewById(R.id.PruebaSpinner);
         //Creacion de un array el cual tiene las categorias
@@ -53,19 +78,48 @@ public class HomeView extends AppCompatActivity {
     public void initValues() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rvtiendas.setLayoutManager(manager);
+        getItems();
 
-        items = getItems();
-        adapter = new AdaptadorRecyclerView(items);
-        rvtiendas.setAdapter(adapter);
     }
 
     public List<CardViewAtributos> getItems() {
         List<CardViewAtributos> itemsList = new ArrayList<>();
-        itemsList.add(new CardViewAtributos("Tomate", "salsa de tomate", R.drawable.tomate));
-        itemsList.add(new CardViewAtributos("axe", "desodorante",R.drawable.axe));
-        itemsList.add(new CardViewAtributos("ponds", "desodorante", R.drawable.ponds));
-        itemsList.add(new CardViewAtributos("axe", "desodorante",R.drawable.axe));
-        itemsList.add(new CardViewAtributos("ego", "salsa de tomate", R.drawable.ego));
+        StorageReference ref  = mStorageRef.child("productos");
+        ref.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                Log.e("productos","productos obtenidos");
+                int lengthItems = listResult.getItems().size();
+                count = 1;
+                for(StorageReference item : listResult.getItems()){
+                    item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            // Got the download URL for 'users/me/profile.png'
+                            Toast.makeText(HomeView.this, uri.toString(), Toast.LENGTH_LONG ).show();
+                            itemsList.add(new CardViewAtributos(    item.getName().toString(), "salsa de tomate", R.drawable.tomate, uri.toString()));
+                            if(count < lengthItems){
+                                count++;
+                            }else{
+                                items =itemsList;
+                                adapter = new AdaptadorRecyclerView(items, HomeView.this);
+                                rvtiendas.setAdapter(adapter);
+                            }
+
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+
+                }
+
+            }
+        });
+
 
 
         return itemsList;
