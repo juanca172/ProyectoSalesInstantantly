@@ -116,14 +116,18 @@
         android:layout_toRightOf="@+id/divider4"
         android:text="TextView----lorem ipssum" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/divider2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="-4dp" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:drawableEnd="@android:drawable/ic_dialog_map"
+        android:text="@string/localizacion"
+        android:textSize="18dp"
+        app:backgroundTint="#1C8AAC"
+        app:iconPadding="10dp"
+        app:iconTintMode="src_in" />
 
 </RelativeLayout>

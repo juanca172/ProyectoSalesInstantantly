@@ -24,4 +24,5 @@
     <string name="hola_mundo">hola mundo</string>
     <string name="nombreProducto">Nombre del producto</string>
     <string name="descripcionProducto">Descripcion del producto</string>
+    <string name="localizacion">Localización</string>
 </resources>
