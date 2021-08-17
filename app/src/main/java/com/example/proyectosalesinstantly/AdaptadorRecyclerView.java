@@ -1,5 +1,6 @@
 package com.example.proyectosalesinstantly;
 
+import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -40,6 +41,14 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
         holder.tvTitulo.setText(atributosDelCardView.getNombre());
         holder.tvDescripcion.setText(atributosDelCardView.getDescripcion());
         Glide.with(Home).load(atributosDelCardView.getImagenDeTienda()).into(holder.imgItem);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(holder.itemView.getContext(), VisualizacionTiendasView.class);
+                holder.itemView.getContext().startActivity(i);
+            }
+        });
     }
 
     @Override
