@@ -7,7 +7,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.RequestBuilder;
 
-public class CardViewAtributos  {
+import java.io.Serializable;
+
+public class CardViewAtributos implements Serializable {
     //nombre del producto
     public String nombre;
     //descripcion del producto

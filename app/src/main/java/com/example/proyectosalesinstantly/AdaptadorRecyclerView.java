@@ -46,6 +46,7 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(holder.itemView.getContext(), VisualizacionTiendasView.class);
+                i.putExtra("itemDetail", atributosDelCardView);
                 holder.itemView.getContext().startActivity(i);
             }
         });

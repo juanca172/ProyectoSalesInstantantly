@@ -13,11 +13,15 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,14 +33,31 @@ public class VisualizacionTiendasView extends AppCompatActivity {
     private TextView descripcion;
     Double latitud;
     Double longitud;
+    private ImageView imagen;
+    private TextView textoNombre;
+    private TextView TextoDescripcion;
+    private CardViewAtributos cardViewAtributos;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizacion_tiendas_view);
         descripcion = findViewById(R.id.tvDescripcionTienda);
+        imagen = findViewById(R.id.imgvImagenDelCardView);
+        textoNombre = findViewById(R.id.tvNombreProductoCardVIEW);
+        TextoDescripcion = findViewById(R.id.tvDescripcionProductoCardVIEW);
         localizacion();
         localizarMovimiento();
+        initValues();
+    }
+
+    private void initValues() {
+        cardViewAtributos= (CardViewAtributos) getIntent().getExtras().getSerializable("itemDetail");
+        Glide.with(this).load(cardViewAtributos.getImagenDeTienda()).into(imagen);
+        textoNombre.setText(cardViewAtributos.getNombre());
+        TextoDescripcion.setText(cardViewAtributos.getDescripcion());
     }
 
     private void localizacion() {
@@ -52,7 +73,7 @@ public class VisualizacionTiendasView extends AppCompatActivity {
 
         }
     }
-    
+
 
     public void goToMap(View view) {
         Intent i = new Intent(this, MapsActivity.class);
