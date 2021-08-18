@@ -52,6 +52,7 @@ public class VisualizacionTiendasView extends AppCompatActivity {
 
         }
     }
+    
 
     public void goToMap(View view) {
         Intent i = new Intent(this, MapsActivity.class);
