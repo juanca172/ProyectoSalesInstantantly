@@ -37,11 +37,11 @@
         <activity android:name=".VisualizacionTiendasView" >
         </activity>
         <activity android:name=".PerfilUsuarioView" />
-        <activity android:name=".HomeView" />
+        <activity android:name=".HomeView" >
+        </activity>
         <activity android:name=".PaginaInicialView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
