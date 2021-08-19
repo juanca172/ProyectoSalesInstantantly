@@ -73,13 +73,10 @@ public class VisualizacionTiendasView extends AppCompatActivity {
 
         }
     }
-
-
     public void goToMap(View view) {
         Intent i = new Intent(this, MapsActivity.class);
         i.putExtra("latitud",latitud);
         i.putExtra("longitud", longitud);
-
         startActivity(i);
     }
 
@@ -98,7 +95,6 @@ public class VisualizacionTiendasView extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
                 //Toast.makeText(VisualizacionTiendasView.this, "latitud:" + location.getLatitude() + "\n longitud_ "+ location.getLongitude(), Toast.LENGTH_SHORT ).show();
             }
             @Override
