@@ -1,5 +1,6 @@
 package com.example.proyectosalesinstantly;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
@@ -20,11 +21,12 @@ import java.util.List;
 
 public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecyclerView.RecyclerHolder> {
     private List<CardViewAtributos> items;
-    HomeView Home;
+    Activity view;
 
-    public AdaptadorRecyclerView(List<CardViewAtributos> items, HomeView Home) {
+
+    public AdaptadorRecyclerView(List<CardViewAtributos> items, Activity view) {
         this.items = items;
-        this.Home = Home;
+        this.view = view;
     }
 
     @NonNull
@@ -41,7 +43,7 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
         holder.tvTitulo.setText(atributosDelCardView.getNombre());
         holder.tvDescripcion.setText(atributosDelCardView.getDescripcion());
         holder.tvPrecio.setText(String.valueOf(atributosDelCardView.getPrecioProducto()));
-        Glide.with(Home).load(atributosDelCardView.getImagenDeTienda()).into(holder.imgItem);
+        Glide.with(view).load(atributosDelCardView.getImagenDeTienda()).into(holder.imgItem);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

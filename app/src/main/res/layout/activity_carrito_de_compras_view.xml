@@ -7,24 +7,31 @@
     tools:context=".CarritoDeComprasView">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCarrito"
         android:layout_width="408dp"
         android:layout_height="505dp"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="2dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
         android:text="Button"
-        tools:layout_editor_absoluteX="248dp"
-        tools:layout_editor_absoluteY="574dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewCarrito" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="68dp"
         android:text="Button"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="574dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewCarrito" />
 </androidx.constraintlayout.widget.ConstraintLayout>

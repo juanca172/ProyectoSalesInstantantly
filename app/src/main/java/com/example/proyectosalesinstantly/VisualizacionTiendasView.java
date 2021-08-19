@@ -16,16 +16,24 @@ import android.location.LocationManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class VisualizacionTiendasView extends AppCompatActivity {
@@ -43,18 +51,24 @@ public class VisualizacionTiendasView extends AppCompatActivity {
     public String nombreParaOtraVista;
     public String descripcionParaOtraVista;
     public Double precioParaOtraVista;
-
+    private Button carrito;
+    FirebaseFirestore db;
+    Map<String, Object> map = new HashMap<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_visualizacion_tiendas_view);
         descripcion = findViewById(R.id.tvDescripcionTienda);
         imagen = findViewById(R.id.imgvImagenDelCardView);
         textoNombre = findViewById(R.id.tvNombreProductoCardVIEW);
         TextoDescripcion = findViewById(R.id.tvDescripcionProductoCardVIEW);
         precioP = findViewById(R.id.precioProductoView);
+        carrito = findViewById(R.id.btnCarritoCompras);
+
+
         localizacion();
         localizarMovimiento();
         initValues();
@@ -66,11 +80,44 @@ public class VisualizacionTiendasView extends AppCompatActivity {
         textoNombre.setText(cardViewAtributos.getNombre());
         TextoDescripcion.setText(cardViewAtributos.getDescripcion());
         precioP.setText(String.valueOf(cardViewAtributos.getPrecioProducto()));
-
         imgenParaOtraVista = cardViewAtributos.getImagenDeTienda();
         nombreParaOtraVista= cardViewAtributos.getNombre();
         descripcionParaOtraVista= cardViewAtributos.getDescripcion();
         precioParaOtraVista = cardViewAtributos.getPrecioProducto();
+
+        carrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cuentaDeCantidadDeDocumentos();
+                Toast.makeText(VisualizacionTiendasView.this, "Se agrego Producto",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(VisualizacionTiendasView.this, CarritoDeComprasView.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    private void CrearDatos(int cuenta) {
+        String titulo = nombreParaOtraVista;
+        String descripcion = descripcionParaOtraVista;
+        String imagen = imgenParaOtraVista;
+        Double price = precioParaOtraVista;
+        map.put("Nombre", titulo);
+        map.put("Descripcion", descripcion);
+        map.put("Imagen", imagen);
+        map.put("Price", price);
+        String valorCuenta = String.valueOf(cuenta);
+        db.collection("Carrito").document(valorCuenta).set(map);
+        
+    }
+    private void cuentaDeCantidadDeDocumentos(){
+        db.collection("Carrito").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                Integer count = task.getResult().size();
+                CrearDatos(count);
+                count++;
+            }
+        });
     }
 
     private void localizacion() {
