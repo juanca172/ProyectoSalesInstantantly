@@ -16,11 +16,15 @@ public class CardViewAtributos implements Serializable {
     public String descripcion;
     //como tenemos nuestras imagenes en la carpeta drawable por eso es entero
     private String ImagenDeTienda;
+    //precio producto
+    private Double precioProducto;
 
-    public CardViewAtributos(String nombre, String descripcion, String ImagenDeTienda) {
+
+    public CardViewAtributos(String nombre, String descripcion, String ImagenDeTienda, Double precioProducto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.ImagenDeTienda = ImagenDeTienda;
+        this.precioProducto = precioProducto;
     }
 
     public String getNombre() {
@@ -45,5 +49,13 @@ public class CardViewAtributos implements Serializable {
 
     public void setImagenDeTienda(String imageResource) {
         this.ImagenDeTienda = imageResource;
+    }
+
+    public Double getPrecioProducto() {
+        return precioProducto;
+    }
+
+    public void setPrecioProducto(Double precioProducto) {
+        this.precioProducto = precioProducto;
     }
 }

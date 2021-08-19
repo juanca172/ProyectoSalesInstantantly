@@ -36,7 +36,13 @@ public class VisualizacionTiendasView extends AppCompatActivity {
     private ImageView imagen;
     private TextView textoNombre;
     private TextView TextoDescripcion;
+    private TextView precioP;
     private CardViewAtributos cardViewAtributos;
+
+    public String imgenParaOtraVista;
+    public String nombreParaOtraVista;
+    public String descripcionParaOtraVista;
+    public Double precioParaOtraVista;
 
 
 
@@ -48,6 +54,7 @@ public class VisualizacionTiendasView extends AppCompatActivity {
         imagen = findViewById(R.id.imgvImagenDelCardView);
         textoNombre = findViewById(R.id.tvNombreProductoCardVIEW);
         TextoDescripcion = findViewById(R.id.tvDescripcionProductoCardVIEW);
+        precioP = findViewById(R.id.precioProductoView);
         localizacion();
         localizarMovimiento();
         initValues();
@@ -58,6 +65,12 @@ public class VisualizacionTiendasView extends AppCompatActivity {
         Glide.with(this).load(cardViewAtributos.getImagenDeTienda()).into(imagen);
         textoNombre.setText(cardViewAtributos.getNombre());
         TextoDescripcion.setText(cardViewAtributos.getDescripcion());
+        precioP.setText(String.valueOf(cardViewAtributos.getPrecioProducto()));
+
+        imgenParaOtraVista = cardViewAtributos.getImagenDeTienda();
+        nombreParaOtraVista= cardViewAtributos.getNombre();
+        descripcionParaOtraVista= cardViewAtributos.getDescripcion();
+        precioParaOtraVista = cardViewAtributos.getPrecioProducto();
     }
 
     private void localizacion() {
@@ -88,8 +101,8 @@ public class VisualizacionTiendasView extends AppCompatActivity {
 
                 try {
                     List<Address> direccion = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                    String miDireccion = "Direccion: " + direccion.get(0).getAddressLine(0);
-                    Toast.makeText(VisualizacionTiendasView.this, miDireccion,Toast.LENGTH_SHORT).show();
+                    //String miDireccion = "Direccion: " + direccion.get(0).getAddressLine(0);
+                    //Toast.makeText(VisualizacionTiendasView.this, miDireccion,Toast.LENGTH_SHORT).show();
                     latitud = location.getLatitude();
                     longitud= location.getLongitude();
                 } catch (IOException e) {

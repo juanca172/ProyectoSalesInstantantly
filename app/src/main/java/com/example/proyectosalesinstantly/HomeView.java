@@ -109,7 +109,8 @@ public class HomeView extends AppCompatActivity {
                         String uri = document.getString("Imagen");
                         String nombre = document.getString("Nombre");
                         String descripcion = document.getString("Descripcion");
-                        items.add(new CardViewAtributos(nombre, descripcion,uri));
+                        Double precio = document.getDouble("Precio");
+                        items.add(new CardViewAtributos(nombre, descripcion,uri,precio));
                         if(count <size){
                             count++;
                         }
@@ -138,7 +139,8 @@ public class HomeView extends AppCompatActivity {
                         String uri = document.getString("Imagen");
                         String nombre = document.getString("Nombre");
                         String descripcion = document.getString("Descripcion");
-                        items.add(new CardViewAtributos(nombre, descripcion,uri));
+                        Double precio = document.getDouble("Precio");
+                        items.add(new CardViewAtributos(nombre, descripcion,uri,precio));
                         if(count <size){
                             count++;
                         }

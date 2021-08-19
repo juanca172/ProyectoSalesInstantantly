@@ -40,8 +40,8 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
         CardViewAtributos atributosDelCardView = items.get(position);
         holder.tvTitulo.setText(atributosDelCardView.getNombre());
         holder.tvDescripcion.setText(atributosDelCardView.getDescripcion());
+        holder.tvPrecio.setText(String.valueOf(atributosDelCardView.getPrecioProducto()));
         Glide.with(Home).load(atributosDelCardView.getImagenDeTienda()).into(holder.imgItem);
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +62,7 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
         private ImageView imgItem;
         private TextView tvTitulo;
         private TextView tvDescripcion;
+        private TextView tvPrecio;
 
 
         public RecyclerHolder(@NonNull View itemView) {
@@ -69,6 +70,7 @@ public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecycle
             imgItem = itemView.findViewById(R.id.imageViewTiendas);
             tvTitulo = itemView.findViewById(R.id.tvNombreDelProducto);
             tvDescripcion = itemView.findViewById(R.id.tvDescripcionProducto);
+            tvPrecio = itemView.findViewById(R.id.tvPrecioProducto);
         }
     }
 

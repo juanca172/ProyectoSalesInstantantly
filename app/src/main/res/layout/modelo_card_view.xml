@@ -47,6 +47,13 @@
                 android:inputType="textPersonName"
                 android:text="@string/descripcionProducto"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvPrecioProducto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PrecioProducto"
+                android:textSize="16dp"/>
         </LinearLayout>
 
 
