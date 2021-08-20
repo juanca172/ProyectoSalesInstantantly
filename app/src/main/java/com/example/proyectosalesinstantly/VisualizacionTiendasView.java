@@ -171,8 +171,7 @@ public class VisualizacionTiendasView extends AppCompatActivity {
         }
         Location location = ubicacion.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if(location != null) {
-            descripcion.setText("latitud:" + location.getLatitude() + "\n longitud: "+ location.getLongitude());
-
+            //descripcion.setText("latitud:" + location.getLatitude() + "\n longitud: "+ location.getLongitude());
         }
     }
     public void goToMap(View view) {
