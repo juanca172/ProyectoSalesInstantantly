@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CFC9C9"
+    android:background="@drawable/descarga"
     tools:context=".HomeView">
 
 
@@ -31,7 +31,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        app:srcCompat="@drawable/cerrar_sesion__2_" />
 
     <ImageButton
         android:id="@+id/ButtonPerfil"
@@ -46,7 +46,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
+        app:srcCompat="@drawable/perfil" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLista"

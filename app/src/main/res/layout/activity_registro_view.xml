@@ -22,14 +22,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="50dp"
-            android:textColorHint="@color/black"
-            android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="@string/txvIntroduceElNombreyApellido"
             android:inputType="textPersonName"
+            android:textColorHint="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -123,6 +123,21 @@
             android:ems="10"
             android:hint="@string/txeIntroduceElTelefono"
             android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/txeIntroduceFechaNacimiento"
+            android:textColorHint="@color/black"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/eFecha"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/descarga__1_"
     tools:context=".CarritoDeComprasView">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@
         android:layout_marginRight="80dp"
         android:onClick="limpiarCarrito"
         android:text="Limpiar"
+        app:backgroundTint="#152A8D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewCarrito" />
 
@@ -34,6 +36,7 @@
         android:layout_marginTop="68dp"
         android:onClick="CompraRealizada"
         android:text="Comprar"
+        app:backgroundTint="#152A8D"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewCarrito" />
 </androidx.constraintlayout.widget.ConstraintLayout>
