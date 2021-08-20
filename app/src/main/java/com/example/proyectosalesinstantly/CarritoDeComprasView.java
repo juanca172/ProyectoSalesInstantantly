@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -50,12 +51,17 @@ public class CarritoDeComprasView extends AppCompatActivity {
         rvCarrito.setAdapter(adaptador);
     }
 
+    public void SeguirComprando(View view){
+        Intent intent = new Intent(CarritoDeComprasView.this, HomeView.class );
+        startActivity(intent);
+    }
+
     public void limpiarCarrito(View view){
         itemsCard.clear(); // clear list
         adaptador.notifyDataSetChanged();
 
         TotalAMostrar = 0.0;
-        preciosTotales.setText(String.valueOf(TotalAMostrar));
+        preciosTotales.setText("$" +String.valueOf(TotalAMostrar));
 
         for(int i= 0; i <= size; i++) {
 
@@ -117,6 +123,6 @@ public class CarritoDeComprasView extends AppCompatActivity {
 
     public void TotalAComprar(){
         TotalAMostrar = total + TotalAMostrar;
-        preciosTotales.setText(String.valueOf(TotalAMostrar));
+        preciosTotales.setText( "$"+ String.valueOf(TotalAMostrar));
     }
 }

@@ -88,6 +88,12 @@ public class VisualizacionTiendasView extends AppCompatActivity {
         initValues();
     }
 
+    public void SeguirComprando(View view){
+        Intent intent = new Intent(VisualizacionTiendasView.this, HomeView.class );
+        startActivity(intent);
+    }
+
+
     private void getTienda() {
         DocumentReference docRef = db.collection("Tiendas").document("1");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

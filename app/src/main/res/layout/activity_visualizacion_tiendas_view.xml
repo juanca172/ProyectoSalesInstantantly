@@ -7,6 +7,23 @@
     android:background="@drawable/descarga"
     tools:context=".VisualizacionTiendasView">
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="70dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        android:onClick="SeguirComprando"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cerrar_sesion__2_" />
+
     <ImageView
         android:id="@+id/imageTienda"
         android:layout_width="100dp"

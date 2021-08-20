@@ -7,12 +7,28 @@
     android:background="@drawable/descarga__1_"
     tools:context=".CarritoDeComprasView">
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="70dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        android:onClick="SeguirComprando"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cerrar_sesion__2_" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCarrito"
         android:layout_width="408dp"
         android:layout_height="505dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/button4"
@@ -44,11 +60,24 @@
         android:id="@+id/tvTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="116dp"
         android:text="TextView"
         android:textColor="#FDFCFC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTotal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:layout_marginRight="120dp"
+        android:layout_marginBottom="116dp"
+        android:text="Total:"
+        android:textColor="#FDFCFC"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
