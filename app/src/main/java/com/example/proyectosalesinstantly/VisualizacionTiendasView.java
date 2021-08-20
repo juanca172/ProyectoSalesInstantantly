@@ -15,7 +15,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,10 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -46,11 +42,6 @@ public class VisualizacionTiendasView extends AppCompatActivity {
     Double latitud;
     Double longitud;
     private ImageView imagen;
-
-    private ImageView imageTienda;
-    private TextView nombreTienda;
-    private  TextView descTienda;
-
     private TextView textoNombre;
     private TextView TextoDescripcion;
     private TextView precioP;
@@ -76,40 +67,12 @@ public class VisualizacionTiendasView extends AppCompatActivity {
         TextoDescripcion = findViewById(R.id.tvDescripcionProductoCardVIEW);
         precioP = findViewById(R.id.precioProductoView);
         carrito = findViewById(R.id.btnCarritoCompras);
-        imageTienda = findViewById(R.id.imageTienda);
-        nombreTienda = findViewById(R.id.nombreTienda);
-        descTienda = findViewById(R.id.descTienda);
 
 
-
-        getTienda();
         localizacion();
         localizarMovimiento();
         initValues();
     }
-
-    private void getTienda() {
-        DocumentReference docRef = db.collection("Tiendas").document("1");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        nombreTienda.setText(document.getString("nombre"));
-                        descTienda.setText(document.getString("descripcion"));
-                        // latitud = document.getDouble("lat");
-                        // longitud =document.getDouble("long");
-                        Glide.with(VisualizacionTiendasView.this).load(document.getString("url")).into(imageTienda);
-
-                    }
-                }
-            }
-        });
-
-    }
-
-
 
     private void initValues() {
         cardViewAtributos= (CardViewAtributos) getIntent().getExtras().getSerializable("itemDetail");
@@ -126,7 +89,9 @@ public class VisualizacionTiendasView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cuentaDeCantidadDeDocumentos();
-
+                Toast.makeText(VisualizacionTiendasView.this, "Se agrego Producto",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(VisualizacionTiendasView.this, CarritoDeComprasView.class);
+                startActivity(i);
             }
         });
     }
@@ -141,15 +106,8 @@ public class VisualizacionTiendasView extends AppCompatActivity {
         map.put("Imagen", imagen);
         map.put("Price", price);
         String valorCuenta = String.valueOf(cuenta);
-        db.collection("Carrito").document(valorCuenta).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(VisualizacionTiendasView.this, "Se agrego Producto",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(VisualizacionTiendasView.this, CarritoDeComprasView.class);
-                startActivity(i);
-            }
-        });
-
+        db.collection("Carrito").document(valorCuenta).set(map);
+        
     }
     private void cuentaDeCantidadDeDocumentos(){
         db.collection("Carrito").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
