@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CFC9C9"
+    android:background="@drawable/descarga"
     tools:context=".VisualizacionTiendasView">
 
     <ImageView
@@ -128,7 +128,7 @@
         android:onClick="goToMap"
         android:text="@string/localizacion"
         android:textSize="18dp"
-        app:backgroundTint="#1C8AAC"
+        app:backgroundTint="#152A8D"
         app:iconPadding="10dp"
         app:iconTintMode="src_in" />
 
@@ -151,7 +151,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:layout_marginTop="5dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:cardBackgroundColor="#474646">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -222,6 +223,7 @@
             android:layout_marginBottom="28dp"
             android:drawableRight="@drawable/carro"
             android:text="Agregar al carrito"
+            app:backgroundTint="#152A8D"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
