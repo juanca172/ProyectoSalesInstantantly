@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +27,9 @@ public class CarritoDeComprasView extends AppCompatActivity {
     FirebaseFirestore db;
     List<CardViewAtributos> itemsCard = new ArrayList<>();
     Integer size;
-
+    double total;
+    TextView preciosTotales;
+    double TotalAMostrar = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,8 @@ public class CarritoDeComprasView extends AppCompatActivity {
         rvCarrito = findViewById(R.id.recyclerViewCarrito);
         initValues();
         ValoresArticulosDelHogar();
+        preciosTotales = findViewById(R.id.tvTotal);
+        TotalAComprar();
     }
     public void initValues() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -48,6 +53,9 @@ public class CarritoDeComprasView extends AppCompatActivity {
     public void limpiarCarrito(View view){
         itemsCard.clear(); // clear list
         adaptador.notifyDataSetChanged();
+
+        TotalAMostrar = 0.0;
+        preciosTotales.setText(String.valueOf(TotalAMostrar));
 
         for(int i= 0; i <= size; i++) {
 
@@ -84,6 +92,8 @@ public class CarritoDeComprasView extends AppCompatActivity {
                         String nombre = document.getString("Nombre");
                         String descripcion = document.getString("Descripcion");
                         Double precio = document.getDouble("Price");
+                        total = precio;
+                        TotalAComprar();
                         itemsCard.add(new CardViewAtributos(nombre, descripcion,uri,precio));
                         if(count <size){
                             count++;
@@ -103,5 +113,10 @@ public class CarritoDeComprasView extends AppCompatActivity {
 
     public void CompraRealizada(View view) {
         Toast.makeText(this, "Compra Realizada",Toast.LENGTH_SHORT).show();
+    }
+
+    public void TotalAComprar(){
+        TotalAMostrar = total + TotalAMostrar;
+        preciosTotales.setText(String.valueOf(TotalAMostrar));
     }
 }
