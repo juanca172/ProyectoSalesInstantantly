@@ -99,4 +99,9 @@ public class CarritoDeComprasView extends AppCompatActivity {
             }
         });
     }
+
+
+    public void CompraRealizada(View view) {
+        Toast.makeText(this, "Compra Realizada",Toast.LENGTH_SHORT).show();
+    }
 }

@@ -32,6 +32,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="68dp"
+        android:onClick="CompraRealizada"
         android:text="Comprar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewCarrito" />
