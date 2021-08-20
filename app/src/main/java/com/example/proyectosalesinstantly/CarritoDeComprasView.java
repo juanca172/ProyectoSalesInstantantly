@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -22,7 +25,7 @@ public class CarritoDeComprasView extends AppCompatActivity {
     private AdaptadorRecyclerView adaptador;
     FirebaseFirestore db;
     List<CardViewAtributos> itemsCard = new ArrayList<>();
-
+    Integer size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +44,42 @@ public class CarritoDeComprasView extends AppCompatActivity {
         adaptador = new AdaptadorRecyclerView(itemsCard,this);
         rvCarrito.setAdapter(adaptador);
     }
+
+    public void limpiarCarrito(View view){
+        itemsCard.clear(); // clear list
+        adaptador.notifyDataSetChanged();
+
+        for(int i= 0; i <= size; i++) {
+
+            db.collection("Carrito").document(Integer.toString(i))
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(CarritoDeComprasView.this, "carrito elliminado", Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(CarritoDeComprasView.this, "error", Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+        }
+    }
+
     //metodo para obtener valores de los Articulos Del Hogar del fireStore
     public void ValoresArticulosDelHogar() {
         db.collection("Carrito").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-                    Integer size  = task.getResult().size();
+                     size  = task.getResult().size();
                     int count = 1;
                     for(QueryDocumentSnapshot document: task.getResult()){
+                        Toast.makeText(CarritoDeComprasView.this, Integer.toString(count), Toast.LENGTH_SHORT).show();
+
                         String uri = document.getString("Imagen");
                         String nombre = document.getString("Nombre");
                         String descripcion = document.getString("Descripcion");
