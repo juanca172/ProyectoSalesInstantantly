@@ -5,7 +5,7 @@
     android:id="@+id/Layaut_Iniciar_Sesion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CFC9C9"
+    android:background="@drawable/descarga__1_"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -18,11 +18,12 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:background="#9200FFF7"
         app:layout_constraintBottom_toTopOf="@+id/txe_correo_usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:mipmap/sym_def_app_icon" />
+        app:srcCompat="@drawable/sales_instantly_logo" />
 
     <EditText
         android:id="@+id/txe_correo_usuario"
@@ -37,6 +38,7 @@
         android:gravity="center"
         android:hint="@string/TxeUsuarioCorreoelectronico"
         android:inputType="textPersonName"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +56,8 @@
         android:ems="10"
         android:gravity="center"
         android:hint="@string/TxeContraseña"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textPassword"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

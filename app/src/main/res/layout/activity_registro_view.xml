@@ -15,16 +15,6 @@
         android:background="@drawable/descarga"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:gravity="center"
-            android:text="@string/txvIntroduceElNombreyApellido"
-            android:textColor="#010101"
-            android:textSize="20sp" />
-
         <EditText
 
             android:id="@+id/editTextNombreyApellido"
@@ -34,20 +24,12 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="@string/txvIntroduceElNombreyApellido"
             android:inputType="textPersonName"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:gravity="center"
-            android:text="@string/txvIntroduceElCorreo"
-            android:textColor="#03A9F4"
             android:textSize="20sp" />
 
         <EditText
@@ -59,24 +41,11 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:hint="@string/txeIntroducirNombre"
             android:inputType="textPersonName"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="@string/txvIntroduceLaContraseña"
-            android:textColor="#2196F3"
             android:textSize="20sp" />
 
         <EditText
@@ -87,25 +56,12 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/txeIntroducirContraseña"
             android:inputType="textMultiLine"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="@string/txvConfirmarContraseña"
-            android:textColor="#2196F3"
             android:textSize="20sp" />
 
         <EditText
@@ -116,24 +72,12 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
             android:ems="10"
             android:hint="@string/txeConfirmaContraseña"
             android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="@string/txvDireccion"
-            android:textColor="#2196F3"
-            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editTextDireccion"
@@ -143,24 +87,12 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
             android:ems="10"
             android:hint="@string/txeColocarDireccion"
             android:inputType="textPostalAddress" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="@string/txvCiudad"
-            android:textColor="#2196F3"
-            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editTextCiudad"
@@ -170,24 +102,12 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
             android:ems="10"
             android:hint="@string/txeIntroduceLaCiudad"
             android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="@string/txvTelefono"
-            android:textColor="#2196F3"
-            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editTextNumeroTelefonico"
@@ -197,24 +117,12 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
             android:ems="10"
             android:hint="@string/txeIntroduceElTelefono"
             android:inputType="number" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="@string/txvFechaNacimiento"
-            android:textColor="#2196F3"
-            android:textSize="20sp" />
 
         <Button
             android:id="@+id/eFecha"
@@ -225,7 +133,9 @@
             android:layout_marginLeft="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="50dp"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
             android:ems="10"
             android:hint="@string/txeIntroduceFechaNacimiento"
             android:inputType="date"
@@ -239,7 +149,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="145dp"
             android:layout_marginLeft="145dp"
-            android:text="@string/btnRegister" />
+            android:text="@string/btnRegister"
+            app:backgroundTint="#152A8D" />
 
     </LinearLayout>
 
