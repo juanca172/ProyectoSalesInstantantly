@@ -5,7 +5,7 @@
     android:id="@+id/Linear_Layaut_P_Inicial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CFC9C9"
+    android:background="@drawable/descarga"
     android:orientation="vertical"
     tools:context=".PaginaInicialView">
 
